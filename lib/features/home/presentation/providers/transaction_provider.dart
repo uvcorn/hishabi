@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hisabi/features/home/domain/entities/transaction.dart';
+import 'package:hishabi/features/home/domain/entities/transaction.dart';
 
 class TransactionProvider extends ChangeNotifier {
   final List<Transaction> _transactions = <Transaction>[

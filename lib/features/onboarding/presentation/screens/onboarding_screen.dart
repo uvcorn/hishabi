@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hisabi/core/widgets/bottom_nav_bar/nav_screen.dart';
+import 'package:hishabi/core/widgets/bottom_nav_bar/nav_screen.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_images.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hisabi/core/constants/app_colors.dart';
-import 'package:hisabi/features/home/presentation/screens/home_screen.dart';
+import 'package:hishabi/core/constants/app_colors.dart';
+import 'package:hishabi/features/home/presentation/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../features/statistics/presentation/screens/statistics_screen.dart';

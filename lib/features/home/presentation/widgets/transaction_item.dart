@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hisabi/core/widgets/texts_widgets/custom_text.dart';
-import 'package:hisabi/features/home/domain/entities/transaction.dart';
+import 'package:hishabi/core/widgets/texts_widgets/custom_text.dart';
+import 'package:hishabi/features/home/domain/entities/transaction.dart';
 
 import '../../../../core/constants/app_colors.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hisabi/features/home/presentation/widgets/transaction_item.dart';
+import 'package:hishabi/features/home/presentation/widgets/transaction_item.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app_colors.dart';
