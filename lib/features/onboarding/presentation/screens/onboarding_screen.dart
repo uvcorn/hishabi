@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/widgets/bottom_nav_bar/nav_screen.dart';
+import 'package:hishabi/l10n/string_extension.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_images.dart';
@@ -40,7 +41,7 @@ class OnboardingScreen extends StatelessWidget {
             ],
           ),
           CustomText(
-            text: AppStrings.onboardingTitle,
+            text: AppStrings.onboardingTitle.tr,
             maxLines: 2,
             fontSize: 36,
             fontWeight: FontWeight.bold,
@@ -48,7 +49,7 @@ class OnboardingScreen extends StatelessWidget {
             bottom: 0, // <-- ensure no bottom padding
           ),
           CustomText(
-            text: AppStrings.onboardingSubTitle,
+            text: AppStrings.onboardingSubTitle.tr,
             fontSize: 36,
             fontWeight: FontWeight.bold,
             color: AppColors.primary,
@@ -59,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
             width: 358,
             height: 60,
             borderRadius: BorderRadius.circular(12),
-            text: AppStrings.getStarted,
+            text: AppStrings.getStarted.tr,
             onPressed: () {
               Navigator.pushReplacementNamed(context, NavScreen.routeName);
             },
@@ -69,8 +70,8 @@ class OnboardingScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomCheckbox(
-                leadingText: AppStrings.alreadyHaveAccount,
-                clickableText: AppStrings.logIn,
+                leadingText: AppStrings.alreadyHaveAccount.tr,
+                clickableText: AppStrings.logIn.tr,
                 clickableColor: AppColors.primary,
                 fontWeight: FontWeight.w600,
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hishabi/l10n/string_extension.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -70,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
             //   ),
             // ),
             SizedBox(height: 12.h), // set to zero for tight layout
-            TypewriterText(text: AppStrings.appName, animation: _animation),
+            TypewriterText(text: AppStrings.appName.tr, animation: _animation),
           ],
         ),
       ),
