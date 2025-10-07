@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/features/home/presentation/widgets/transaction_item.dart';
+import 'package:hishabi/core/localization/string_extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -23,6 +24,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refreshAll(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 1));
+  }
+
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+
+    if (hour >= 5 && hour < 12) {
+      return AppStrings.goodMorning.tr;
+    } else if (hour >= 12 && hour < 14) {
+      return AppStrings.goodNoon.tr;
+    } else if (hour >= 14 && hour < 17) {
+      return AppStrings.goodAfternoon.tr;
+    } else if (hour >= 17 && hour < 20) {
+      return AppStrings.goodEvening.tr;
+    } else if (hour >= 20 && hour < 24) {
+      return AppStrings.goodNight.tr;
+    } else {
+      return AppStrings.goodEarlyMorning.tr;
+    }
   }
 
   @override
@@ -58,14 +77,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
-                              text: AppStrings.goodAfternoon,
+                              text: _getGreeting(),
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColors.white,
                             ),
                             SizedBox(height: 4.h),
                             CustomText(
-                              text: AppStrings.userName,
+                              text: AppStrings.userName.tr,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.white,
@@ -114,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: AppStrings.transactionsHistory,
+                      text: AppStrings.transactionsHistory.tr,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       color: AppColors.black,
@@ -122,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       onTap: () {},
                       child: CustomText(
-                        text: AppStrings.seeAll,
+                        text: AppStrings.seeAll.tr,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                         color: AppColors.primary,

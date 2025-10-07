@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hishabi/core/localization/string_extension.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -45,27 +46,20 @@ class _BalanceCardState extends State<BalanceCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  CustomText(
-                    text: AppStrings.totalBalance,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.white,
-                  ),
-                  GestureDetector(
-                    onTap: _toggleBalance,
-                    child: Icon(
-                      _showBalance
-                          ? Icons.keyboard_arrow_up
-                          : Icons.keyboard_arrow_down,
-                      color: AppColors.white,
-                      size: 20.r,
-                    ),
-                  ),
-                ],
+              CustomText(
+                text: AppStrings.totalBalance.tr,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.white,
               ),
-              Icon(Icons.more_horiz, color: AppColors.white, size: 20.r),
+              GestureDetector(
+                onTap: _toggleBalance,
+                child: Icon(
+                  _showBalance ? Icons.visibility : Icons.visibility_off,
+                  color: AppColors.white,
+                  size: 20.r,
+                ),
+              ),
             ],
           ),
           SizedBox(height: 8.h),
@@ -84,13 +78,13 @@ class _BalanceCardState extends State<BalanceCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: AppStrings.income,
+                    text: AppStrings.income.tr,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                     color: AppColors.white,
                   ),
                   CustomText(
-                    text: widget.incomeAmount,
+                    text: _showBalance ? widget.incomeAmount : '••••••',
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.white,
@@ -101,13 +95,13 @@ class _BalanceCardState extends State<BalanceCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: AppStrings.expenses,
+                    text: AppStrings.expenses.tr,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                     color: AppColors.white,
                   ),
                   CustomText(
-                    text: widget.expenseAmount,
+                    text: _showBalance ? widget.expenseAmount : '••••••',
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.white,

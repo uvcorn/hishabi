@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/widgets/bottom_nav_bar/nav_screen.dart';
-import 'package:hishabi/l10n/string_extension.dart';
+import 'package:hishabi/core/localization/string_extension.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_images.dart';

@@ -4,7 +4,7 @@ import 'package:hishabi/core/constants/app_colors.dart';
 import 'package:hishabi/features/home/presentation/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../../features/statistics/presentation/screens/statistics_screen.dart';
+import '../../../features/menu/presentation/screens/menu_screen.dart';
 import 'nav_provider.dart';
 
 class NavScreen extends StatelessWidget {
@@ -12,9 +12,9 @@ class NavScreen extends StatelessWidget {
   static const String routeName = '/nav-screen';
   final List<Widget> _pages = const [
     HomeScreen(),
-    StatisticsScreen(),
     HomeScreen(),
     HomeScreen(),
+    MenuScreen(),
   ];
 
   @override
@@ -32,11 +32,7 @@ class NavScreen extends StatelessWidget {
           onPressed: () {
             print('FAB Pressed');
           },
-          child: Icon(
-            Icons.add,
-            size: 40,
-            color: AppColors.white,
-          ), // icon বড় করো
+          child: Icon(Icons.add, size: 40, color: AppColors.white),
         ),
       ),
 
@@ -90,7 +86,7 @@ class NavScreen extends StatelessWidget {
             GestureDetector(
               onTap: () => navProvider.setIndex(3),
               child: Icon(
-                Icons.person,
+                Icons.menu,
                 color: navProvider.currentIndex == 3
                     ? AppColors.primary
                     : Colors.grey,

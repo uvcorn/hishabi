@@ -18,7 +18,14 @@ class AppStrings {
   static const String getStarted = 'getStarted';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String logIn = 'logIn';
+
+  static const String goodMorning = 'goodMorning';
+  static const String goodNoon = 'goodNoon';
   static const String goodAfternoon = 'goodAfternoon';
+  static const String goodEvening = 'goodEvening';
+  static const String goodNight = 'goodNight';
+  static const String goodEarlyMorning = 'goodEarlyMorning';
+
   static const String userName = 'userName';
   static const String totalBalance = 'totalBalance';
   static const String balanceAmount = 'balanceAmount';

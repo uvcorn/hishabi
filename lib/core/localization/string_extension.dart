@@ -1,4 +1,4 @@
-import '../main.dart'; // Import to access navigatorKey
+import '../../main.dart'; // Import to access navigatorKey
 import 'app_localizations.dart';
 
 extension StringTranslation on String {
