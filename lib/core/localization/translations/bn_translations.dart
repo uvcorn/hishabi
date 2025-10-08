@@ -29,4 +29,10 @@ const Map<String, String> bnTranslations = {
   'expenses': 'খরচ',
   'transactionsHistory': 'লেনদেনের ইতিহাস',
   'seeAll': 'সব দেখুন',
+  'profile': 'প্রোফাইল',
+  'editProfile': 'প্রোফাইল সম্পাদনা করুন',
+  'changeLanguage': 'ভাষা পরিবর্তন করুন',
+  'selectLanguage': 'ভাষা নির্বাচন করুন',
+  'english': 'ইংরেজি',
+  'bengali': 'বাংলা',
 };

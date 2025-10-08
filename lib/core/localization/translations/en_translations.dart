@@ -30,4 +30,10 @@ const Map<String, String> enTranslations = {
   'expenses': 'Expenses',
   'transactionsHistory': 'Transactions History',
   'seeAll': 'See all',
+  'profile': 'Profile',
+  'editProfile': 'Edit Profile',
+  'changeLanguage': 'Change Language',
+  'selectLanguage': 'Select Language',
+  'english': 'English',
+  'bangla': 'Bangla',
 };

@@ -18,14 +18,12 @@ class AppStrings {
   static const String getStarted = 'getStarted';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String logIn = 'logIn';
-
   static const String goodMorning = 'goodMorning';
   static const String goodNoon = 'goodNoon';
   static const String goodAfternoon = 'goodAfternoon';
   static const String goodEvening = 'goodEvening';
   static const String goodNight = 'goodNight';
   static const String goodEarlyMorning = 'goodEarlyMorning';
-
   static const String userName = 'userName';
   static const String totalBalance = 'totalBalance';
   static const String balanceAmount = 'balanceAmount';
@@ -35,4 +33,11 @@ class AppStrings {
   static const String expensesAmount = 'expensesAmount';
   static const String transactionsHistory = 'transactionsHistory';
   static const String seeAll = 'seeAll';
+
+  static const String profile = 'profile';
+  static const String editProfile = 'editProfile';
+  static const String changeLanguage = 'changeLanguage';
+  static const String selectLanguage = 'selectLanguage';
+  static const String english = 'english';
+  static const String bengali = 'bengali';
 }

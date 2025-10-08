@@ -33,28 +33,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final languageProvider = Provider.of<LanguageProvider>(context);
     return ScreenUtilInit(
       designSize: const Size(420, 890),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          navigatorKey: navigatorKey,
-          debugShowCheckedModeBanner: false,
-          locale: languageProvider.locale,
-          localizationsDelegates: const [
-            AppLocalizationsDelegate(),
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale('en'), Locale('bn')],
-
-          initialRoute: AppRoutes.splash,
-          routes: AppRoutes.routes,
+        return Consumer<LanguageProvider>(
+          builder: (context, languageProvider, _) {
+            return MaterialApp(
+              navigatorKey: navigatorKey,
+              navigatorObservers: [LocaleChangeObserver()],
+              debugShowCheckedModeBanner: false,
+              locale: languageProvider.locale,
+              localizationsDelegates: const [
+                AppLocalizationsDelegate(),
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [Locale('en'), Locale('bn')],
+              initialRoute: AppRoutes.splash,
+              routes: AppRoutes.routes,
+            );
+          },
         );
       },
     );
+  }
+}
+
+class LocaleChangeObserver extends NavigatorObserver {
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      (navigatorKey.currentContext as Element?)?.markNeedsBuild();
+    });
+    super.didPop(route, previousRoute);
   }
 }

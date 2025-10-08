@@ -67,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     fit: BoxFit.cover,
                   ),
                   Positioned(
-                    top: 80,
-                    left: 16,
-                    right: 16,
+                    top: 80.h,
+                    left: 16.w,
+                    right: 16.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -92,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Container(
-                          height: 40,
-                          width: 40,
+                          height: 40.h,
+                          width: 40.w,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColors.white.withOpacity(0.2),
@@ -111,9 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: -80,
-                    left: 16,
-                    right: 16,
+                    bottom: -80.h,
+                    left: 16.w,
+                    right: 16.w,
                     child: BalanceCard(
                       balanceAmount: balanceProvider.balance.toStringAsFixed(2),
                       incomeAmount: balanceProvider.income.toStringAsFixed(2),
