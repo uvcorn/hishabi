@@ -24,21 +24,21 @@ class NavScreen extends StatelessWidget {
       backgroundColor: AppColors.white,
       body: _pages[navProvider.currentIndex],
       floatingActionButton: SizedBox(
-        height: 75,
-        width: 75,
+        height: 75.h,
+        width: 75.w,
         child: FloatingActionButton(
           shape: const CircleBorder(),
           backgroundColor: AppColors.primary,
           onPressed: () {
             print('FAB Pressed');
           },
-          child: Icon(Icons.add, size: 40, color: AppColors.white),
+          child: Icon(Icons.add, size: 40.r, color: AppColors.white),
         ),
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Container(
-        height: 80, // যেকোনো height দিতে পারো
+        height: 80.h,
         decoration: BoxDecoration(
           color: Colors.grey.shade50,
           boxShadow: [

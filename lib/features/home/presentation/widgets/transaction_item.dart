@@ -20,7 +20,7 @@ class TransactionItem extends StatelessWidget {
             width: 50.w,
             height: 50.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               color: AppColors.borderGray,
             ),
             child: Icon(

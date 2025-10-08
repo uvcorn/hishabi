@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/localization/applocalization_delegate.dart';
 import 'package:provider/provider.dart';
 
+import 'core/navigation/locale_change_observer.dart';
 import 'core/widgets/bottom_nav_bar/nav_provider.dart';
 import 'features/home/presentation/providers/balance_provider.dart';
 import 'features/home/presentation/providers/transaction_provider.dart';
@@ -59,15 +60,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class LocaleChangeObserver extends NavigatorObserver {
-  @override
-  void didPop(Route route, Route? previousRoute) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      (navigatorKey.currentContext as Element?)?.markNeedsBuild();
-    });
-    super.didPop(route, previousRoute);
   }
 }
