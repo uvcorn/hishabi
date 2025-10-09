@@ -100,13 +100,22 @@ class MenuScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 56.h),
+            SizedBox(height: 50.h),
+            Center(
+              child: CustomText(
+                text: AppStrings.name.tr,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.black,
+              ),
+            ),
+            // SizedBox(height: 6.h),
             Center(
               child: CustomText(
                 text: AppStrings.userName.tr,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
-                color: AppColors.black,
+                color: AppColors.primary,
               ),
             ),
             SizedBox(height: 24.h),

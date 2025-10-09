@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: 4.h),
                             CustomText(
-                              text: AppStrings.userName.tr,
+                              text: AppStrings.name.tr,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.white,

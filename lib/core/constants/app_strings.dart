@@ -24,7 +24,8 @@ class AppStrings {
   static const String goodEvening = 'goodEvening';
   static const String goodNight = 'goodNight';
   static const String goodEarlyMorning = 'goodEarlyMorning';
-  static const String userName = 'userName';
+  static const String name = 'Md. Shadhin Ali';
+  static const String userName = '@shadhin_ali';
   static const String totalBalance = 'totalBalance';
   static const String balanceAmount = 'balanceAmount';
   static const String income = 'income';
