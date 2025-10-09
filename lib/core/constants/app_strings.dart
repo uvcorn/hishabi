@@ -33,11 +33,14 @@ class AppStrings {
   static const String expensesAmount = 'expensesAmount';
   static const String transactionsHistory = 'transactionsHistory';
   static const String seeAll = 'seeAll';
-
   static const String profile = 'profile';
   static const String editProfile = 'editProfile';
   static const String changeLanguage = 'changeLanguage';
   static const String selectLanguage = 'selectLanguage';
   static const String english = 'english';
   static const String bengali = 'bengali';
+
+  static const String chooseYourLanguage = 'chooseYourLanguage';
+  static const String selectYourPreferredLanguageToContinue =
+      'selectYourPreferredLanguageToContinue';
 }

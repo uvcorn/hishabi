@@ -35,4 +35,7 @@ const Map<String, String> bnTranslations = {
   'selectLanguage': 'ভাষা নির্বাচন করুন',
   'english': 'ইংরেজি',
   'bengali': 'বাংলা',
+  'chooseYourLanguage': 'আপনার ভাষা নির্বাচন করুন',
+  'selectYourPreferredLanguageToContinue':
+      'চালিয়ে যেতে আপনার পছন্দের ভাষা নির্বাচন করুন',
 };

@@ -36,4 +36,7 @@ const Map<String, String> enTranslations = {
   'selectLanguage': 'Select Language',
   'english': 'English',
   'bangla': 'Bangla',
+  'chooseYourLanguage': 'Choose Your Language',
+  'selectYourPreferredLanguageToContinue':
+      'Select your preferred language to continue',
 };
