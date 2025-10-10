@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/localization/string_extension.dart';
 import 'package:hishabi/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/widgets/image_widgets/custom_image.dart';
 import '../../../../core/widgets/texts_widgets/custom_text.dart';
+import '../../../user/presentation/providers/user_provider.dart';
 // import 'language_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -16,6 +20,8 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = context.watch<UserProvider>();
+    final user = userProvider.activeUser;
     return Scaffold(
       // appBar: AppBar(title: Text('menu_title'.tr)),
       backgroundColor: AppColors.white,
@@ -90,10 +96,15 @@ class MenuScreen extends StatelessWidget {
                         ],
                       ),
                       child: ClipOval(
-                        child: CustomImage(
-                          imageSrc: AppImages.profile,
-                          fit: BoxFit.cover,
-                        ),
+                        child: user?.profilePicturePath != null
+                            ? CustomImage(
+                                imageFile: File(user!.profilePicturePath!),
+
+                                sizeWidth: 140.w,
+                                sizeHeight: 140.h,
+                                fit: BoxFit.cover,
+                              )
+                            : Icon(Icons.person, size: 100.r),
                       ),
                     ),
                   ),
@@ -112,7 +123,7 @@ class MenuScreen extends StatelessWidget {
             // SizedBox(height: 6.h),
             Center(
               child: CustomText(
-                text: AppStrings.userName.tr,
+                text: "@${user!.username}",
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,

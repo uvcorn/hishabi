@@ -4,7 +4,9 @@ import 'package:hishabi/core/localization/string_extension.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../routes/app_routes.dart';
 import '../../../onboarding/presentation/screens/onboarding_screen.dart';
+import '../../../user/presentation/providers/user_provider.dart';
 import '../provider/splash_provider.dart';
 import '../widgets/typewriter_text.dart';
 
@@ -32,14 +34,37 @@ class _SplashScreenState extends State<SplashScreen>
       end: 1,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
     _controller.forward();
-    Future.microtask(() {
-      Provider.of<SplashProvider>(context, listen: false).initializeSplash(
+    Future.microtask(() async {
+      final splashProvider = Provider.of<SplashProvider>(
+        context,
+        listen: false,
+      );
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      await userProvider.init();
+
+      splashProvider.initializeSplash(
         onComplete: () {
-          if (mounted) {
+          final activeUser = userProvider.activeUser;
+          final allUsers = userProvider.allUsers;
+          if (!mounted) return;
+
+          if (activeUser != null || allUsers.isNotEmpty) {
+            // user exists → go to main app
+            Navigator.pushReplacementNamed(context, AppRoutes.navScreen);
+          } else {
+            // no user yet → onboarding
             Navigator.pushReplacementNamed(context, OnboardingScreen.routeName);
           }
         },
       );
+
+      // Provider.of<SplashProvider>(context, listen: false).initializeSplash(
+      //   onComplete: () {
+      //     if (mounted) {
+      //       Navigator.pushReplacementNamed(context, OnboardingScreen.routeName);
+      //     }
+      //   },
+      // );
     });
   }
 

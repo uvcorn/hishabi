@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/localization/applocalization_delegate.dart';
+import 'package:hishabi/features/user/data/datasources/user_local_data_source.dart';
+import 'package:hishabi/features/user/data/datasources/user_prefs_data_source.dart';
+import 'package:hishabi/features/user/data/repositories/user_repository_impl.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 import 'core/navigation/locale_change_observer.dart';
@@ -10,10 +15,20 @@ import 'features/home/presentation/providers/balance_provider.dart';
 import 'features/home/presentation/providers/transaction_provider.dart';
 import 'features/splash/presentation/provider/splash_provider.dart';
 import 'core/localization/language_provider.dart';
+import 'features/user/data/models/user_model.dart';
+import 'features/user/presentation/providers/user_provider.dart';
 import 'routes/app_routes.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserModelAdapter());
+  final box = await Hive.openBox<UserModel>('user');
+  final userRepo = UserRepositoryImpl(
+    localDataSource: UserLocalDataSourceImpl(box),
+    prefsDataSource: UserPrefsDataSourceImpl(),
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -21,7 +36,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => BalanceProvider()),
         ChangeNotifierProvider(create: (_) => TransactionProvider()),
         ChangeNotifierProvider(create: (_) => NavProvider()),
-
+        ChangeNotifierProvider(create: (_) => UserProvider(userRepo)..init()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
       ],
       child: const MyApp(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hishabi/core/widgets/bottom_nav_bar/nav_screen.dart';
 import 'package:hishabi/core/localization/string_extension.dart';
+import 'package:hishabi/routes/app_routes.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_images.dart';
@@ -62,7 +62,7 @@ class OnboardingScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             text: AppStrings.getStarted.tr,
             onPressed: () {
-              Navigator.pushReplacementNamed(context, NavScreen.routeName);
+              Navigator.pushReplacementNamed(context, AppRoutes.createAccount);
             },
           ),
           SizedBox(height: 20.h),

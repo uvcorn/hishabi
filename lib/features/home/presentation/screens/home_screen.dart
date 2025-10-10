@@ -9,6 +9,7 @@ import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/widgets/image_widgets/custom_image.dart';
 import '../../../../core/widgets/texts_widgets/custom_text.dart';
+import '../../../user/presentation/providers/user_provider.dart';
 import '../providers/balance_provider.dart';
 import '../providers/transaction_provider.dart';
 import '../widgets/balance_card.dart';
@@ -48,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final balanceProvider = Provider.of<BalanceProvider>(context);
     final provider = Provider.of<TransactionProvider>(context);
+    final userProvider = context.watch<UserProvider>();
+    final user = userProvider.activeUser;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: RefreshIndicator(
@@ -84,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: 4.h),
                             CustomText(
-                              text: AppStrings.name.tr,
+                              text: user!.name,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.white,
