@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -40,14 +42,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     final provider = context.read<UserProvider>();
 
+    // Step 1: Create the user
     await provider.addUser(name);
     final newUser = provider.allUsers.last;
 
+    // Step 2: Set as active user FIRST (so activeUser is not null)
+    await provider.setActiveUser(newUser.username);
+
+    // Step 3: NOW update profile picture (activeUser is set)
     if (_selectedImage != null) {
       await provider.updateProfilePicture(_selectedImage!.path);
     }
 
-    await provider.setActiveUser(newUser.username);
     setState(() => _isLoading = false);
 
     if (context.mounted) {

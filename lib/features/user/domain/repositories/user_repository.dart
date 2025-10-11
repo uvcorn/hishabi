@@ -11,4 +11,6 @@ abstract class UserRepository {
   Future<UserEntity?> getActiveUser();
   Future<List<UserEntity>> getAllUsers();
   Future<void> setActiveUser(String username);
+  Future<void> clearActiveUser();
+  Future<UserEntity?> getUserByUsername(String username);
 }

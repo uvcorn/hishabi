@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hishabi/core/utils/user_guard.dart';
 import 'package:hishabi/features/home/presentation/widgets/transaction_item.dart';
 import 'package:hishabi/core/localization/string_extension.dart';
 import 'package:provider/provider.dart';
@@ -51,116 +54,122 @@ class _HomeScreenState extends State<HomeScreen> {
     final provider = Provider.of<TransactionProvider>(context);
     final userProvider = context.watch<UserProvider>();
     final user = userProvider.activeUser;
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: RefreshIndicator(
-        color: AppColors.primary,
-        onRefresh: () => _refreshAll(context),
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  CustomImage(
-                    imageSrc: AppImages.homeTopBg,
-                    sizeWidth: double.infinity,
-                    sizeHeight: 310.h,
-                    fit: BoxFit.cover,
-                  ),
-                  Positioned(
-                    top: 80.h,
-                    left: 16.w,
-                    right: 16.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: _getGreeting(),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.white,
-                            ),
-                            SizedBox(height: 4.h),
-                            CustomText(
-                              text: user!.name,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.white,
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 40.h,
-                          width: 40.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.white.withOpacity(0.2),
-                          ),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.notifications,
-                              color: AppColors.white,
-                              size: 22.r,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: -80.h,
-                    left: 16.w,
-                    right: 16.w,
-                    child: BalanceCard(
-                      balanceAmount: balanceProvider.balance.toStringAsFixed(2),
-                      incomeAmount: balanceProvider.income.toStringAsFixed(2),
-                      expenseAmount: balanceProvider.expense.toStringAsFixed(2),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SliverToBoxAdapter(child: SizedBox(height: 100.h)),
-
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return UserGuard(
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: RefreshIndicator(
+          color: AppColors.primary,
+          onRefresh: () => _refreshAll(context),
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    CustomText(
-                      text: AppStrings.transactionsHistory.tr,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.black,
+                    CustomImage(
+                      imageSrc: AppImages.homeTopBg,
+                      sizeWidth: double.infinity,
+                      sizeHeight: 310.h,
+                      fit: BoxFit.cover,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: CustomText(
-                        text: AppStrings.seeAll.tr,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.primary,
+                    Positioned(
+                      top: 80.h,
+                      left: 16.w,
+                      right: 16.w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: _getGreeting(),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.white,
+                              ),
+                              SizedBox(height: 4.h),
+                              CustomText(
+                                text: user!.name,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.white,
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 40.h,
+                            width: 40.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.white.withOpacity(0.2),
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.notifications,
+                                color: AppColors.white,
+                                size: 22.r,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -80.h,
+                      left: 16.w,
+                      right: 16.w,
+                      child: BalanceCard(
+                        balanceAmount: balanceProvider.balance.toStringAsFixed(
+                          2,
+                        ),
+                        incomeAmount: balanceProvider.income.toStringAsFixed(2),
+                        expenseAmount: balanceProvider.expense.toStringAsFixed(
+                          2,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
 
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return TransactionItem(tx: provider.transactions[index]);
-              }, childCount: provider.transactions.length),
-            ),
-          ],
+              SliverToBoxAdapter(child: SizedBox(height: 100.h)),
+
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: AppStrings.transactionsHistory.tr,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.black,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: CustomText(
+                          text: AppStrings.seeAll.tr,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return TransactionItem(tx: provider.transactions[index]);
+                }, childCount: provider.transactions.length),
+              ),
+            ],
+          ),
         ),
       ),
     );

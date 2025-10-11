@@ -44,4 +44,9 @@ class AppStrings {
   static const String chooseYourLanguage = 'chooseYourLanguage';
   static const String selectYourPreferredLanguageToContinue =
       'selectYourPreferredLanguageToContinue';
+
+  static const String updateProfile = 'updateProfile';
+  static const String allUsers = 'allUsers';
+  static const String selectUser = 'selectUser';
+  static const String logout = 'logout';
 }

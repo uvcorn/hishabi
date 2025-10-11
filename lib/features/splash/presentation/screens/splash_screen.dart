@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -49,6 +50,9 @@ class _SplashScreenState extends State<SplashScreen>
           if (!mounted) return;
 
           if (activeUser != null || allUsers.isNotEmpty) {
+            // if (activeUser != null) {
+            //   Navigator.pushReplacementNamed(context, AppRoutes.navScreen);
+            // }
             // user exists → go to main app
             Navigator.pushReplacementNamed(context, AppRoutes.navScreen);
           } else {

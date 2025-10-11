@@ -7,6 +7,7 @@ import 'package:hishabi/core/localization/string_extension.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/localization/language_provider.dart';
+import '../../../../core/widgets/appbar/custom_appbar.dart';
 import '../../../../core/widgets/texts_widgets/custom_text.dart';
 import '../widgets/language_option_tile.dart';
 
@@ -63,19 +64,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Back Button & Title
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context, true),
-                      child: Icon(Icons.arrow_back_ios, color: AppColors.black),
-                    ),
-                    SizedBox(width: 100.w),
-                    CustomText(
-                      text: AppStrings.selectLanguage.tr,
-                      fontSize: 20,
-                    ),
-                  ],
-                ),
+                CustomAppBar(title: AppStrings.selectLanguage.tr),
                 SizedBox(height: 20.h),
 
                 /// Heading Texts

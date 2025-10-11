@@ -1,13 +1,12 @@
-import 'dart:io';
+// ignore_for_file: deprecated_member_use
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hishabi/core/localization/string_extension.dart';
 import 'package:hishabi/routes/app_routes.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/widgets/image_widgets/custom_image.dart';
 import '../../../../core/widgets/texts_widgets/custom_text.dart';
@@ -26,152 +25,203 @@ class MenuScreen extends StatelessWidget {
       // appBar: AppBar(title: Text('menu_title'.tr)),
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                CustomImage(
-                  imageSrc: AppImages.homeTopBg,
-                  sizeWidth: double.infinity,
-                  sizeHeight: 310.h,
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  top: 80.h,
-                  right: 16.w,
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 4.h),
-                          CustomText(
-                            text: AppStrings.profile.tr,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.white,
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 120.w),
-                      Container(
-                        height: 40.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.white.withOpacity(0.2),
-                        ),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.notifications,
-                            color: AppColors.white,
-                            size: 22.r,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  bottom: -40.h,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    // Center the container horizontally
-                    child: Container(
-                      height: 140.h,
-                      width: 140.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, -2),
-                          ),
-                        ],
-                      ),
-                      child: ClipOval(
-                        child: user?.profilePicturePath != null
-                            ? CustomImage(
-                                imageFile: File(user!.profilePicturePath!),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Stack(
+              //   clipBehavior: Clip.none,
+              //   children: [
+              //     CustomImage(
+              //       imageSrc: AppImages.homeTopBg,
+              //       sizeWidth: double.infinity,
+              //       sizeHeight: 310.h,
+              //       fit: BoxFit.cover,
+              //     ),
+              //     Positioned(
+              //       top: 80.h,
+              //       right: 16.w,
+              //       child: Row(
+              //         children: [
+              //           Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: [
+              //               SizedBox(height: 4.h),
+              //               CustomText(
+              //                 text: AppStrings.profile.tr,
+              //                 fontSize: 20.sp,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: AppColors.white,
+              //               ),
+              //             ],
+              //           ),
+              //           SizedBox(width: 120.w),
+              //           Container(
+              //             height: 40.h,
+              //             width: 40.w,
+              //             decoration: BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               color: AppColors.white.withOpacity(0.2),
+              //             ),
+              //             child: IconButton(
+              //               icon: Icon(
+              //                 Icons.notifications,
+              //                 color: AppColors.white,
+              //                 size: 22.r,
+              //               ),
+              //               onPressed: () {},
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Positioned(
+              //       bottom: -40.h,
+              //       left: 0,
+              //       right: 0,
+              //       child: Center(
+              //         // Center the container horizontally
+              //         child: Container(
+              //           height: 140.h,
+              //           width: 140.w,
+              //           decoration: BoxDecoration(
+              //             shape: BoxShape.circle,
+              //             color: AppColors.white,
+              //             boxShadow: [
+              //               BoxShadow(
+              //                 color: Colors.black12,
+              //                 blurRadius: 6,
+              //                 offset: Offset(0, -2),
+              //               ),
+              //             ],
+              //           ),
+              //           child: ClipOval(
+              //             child: user?.profilePicturePath != null
+              //                 ? CustomImage(
+              //                     imageFile: File(user!.profilePicturePath!),
 
-                                sizeWidth: 140.w,
-                                sizeHeight: 140.h,
-                                fit: BoxFit.cover,
-                              )
-                            : Icon(Icons.person, size: 100.r),
+              //                     sizeWidth: 140.w,
+              //                     sizeHeight: 140.h,
+              //                     fit: BoxFit.cover,
+              //                   )
+              //                 : Icon(Icons.person, size: 100.r),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(height: 50.h),
+              // Center(
+              //   child: CustomText(
+              //     text: user!.name,
+              //     fontSize: 20.sp,
+              //     fontWeight: FontWeight.bold,
+              //     color: AppColors.black,
+              //   ),
+              // ),
+              // // SizedBox(height: 6.h),
+              // Center(
+              //   child: CustomText(
+              //     text: "@${user.username}",
+              //     fontSize: 16.sp,
+              //     fontWeight: FontWeight.bold,
+              //     color: AppColors.primary,
+              //   ),
+              // ),
+              SizedBox(height: 30.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 35.w),
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(),
+                      child: Row(
+                        children: [
+                          ClipOval(
+                            child: user!.profilePicturePath != null
+                                ? CustomImage(
+                                    imageFile: File(user.profilePicturePath!),
+
+                                    sizeWidth: 60.w,
+                                    sizeHeight: 60.h,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Icon(Icons.person, size: 60.r),
+                          ),
+                          SizedBox(width: 20.w),
+                          Column(
+                            children: [
+                              CustomText(
+                                text: user.name,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.black,
+                              ),
+                              CustomText(
+                                text: "@${user.username}",
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary,
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 24.r,
+                            color: AppColors.black,
+                          ),
+                        ],
                       ),
                     ),
-                  ),
+                    Divider(thickness: 1.h, color: AppColors.borderGray),
+                    SizedBox(height: 16.h),
+                    CustomTileRow(
+                      icon: Icons.edit,
+                      title: AppStrings.editProfile.tr,
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.updateProfile);
+                      },
+                    ),
+                    SizedBox(height: 16.h),
+                    CustomTileRow(
+                      icon: Icons.language,
+                      title: AppStrings.changeLanguage.tr,
+                      onTap: () async {
+                        final changed = await Navigator.pushNamed(
+                          context,
+                          AppRoutes.language,
+                        );
+                        if (changed == true) {
+                          (context as Element).markNeedsBuild();
+                        }
+                      },
+                    ),
+                    // SizedBox(height: 16.h),
+                    // CustomTileRow(
+                    //   icon: Icons.lock,
+                    //   title: AppStrings.changePassword.tr,
+                    // ),
+                    // SizedBox(height: 16.h),
+                    // CustomTileRow(
+                    //   icon: Icons.language,
+                    //   title: AppStrings.changeLanguage.tr,
+                    // ),
+                    SizedBox(height: 16.h),
+                    CustomTileRow(
+                      icon: Icons.logout,
+                      title: AppStrings.logout.tr,
+                      onTap: () async {
+                        final userProvider = context.read<UserProvider>();
+                        await userProvider.clearActiveUser();
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 50.h),
-            Center(
-              child: CustomText(
-                text: AppStrings.name.tr,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.black,
               ),
-            ),
-            // SizedBox(height: 6.h),
-            Center(
-              child: CustomText(
-                text: "@${user!.username}",
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-            SizedBox(height: 24.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 35.w),
-              child: Column(
-                children: [
-                  CustomTileRow(
-                    icon: Icons.edit,
-                    title: AppStrings.editProfile.tr,
-                    onTap: () {},
-                  ),
-                  SizedBox(height: 16.h),
-                  CustomTileRow(
-                    icon: Icons.language,
-                    title: AppStrings.changeLanguage.tr,
-                    onTap: () async {
-                      final changed = await Navigator.pushNamed(
-                        context,
-                        AppRoutes.language,
-                      );
-                      if (changed == true) {
-                        (context as Element).markNeedsBuild();
-                      }
-                    },
-                  ),
-                  // SizedBox(height: 16.h),
-                  // CustomTileRow(
-                  //   icon: Icons.lock,
-                  //   title: AppStrings.changePassword.tr,
-                  // ),
-                  // SizedBox(height: 16.h),
-                  // CustomTileRow(
-                  //   icon: Icons.language,
-                  //   title: AppStrings.changeLanguage.tr,
-                  // ),
-                  // SizedBox(height: 16.h),
-                  // CustomTileRow(
-                  //   icon: Icons.logout,
-                  //   title: AppStrings.logout.tr,
-                  // ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -15,21 +15,38 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Load only the user list without setting active user
+  Future<void> loadAllUsersOnly() async {
+    allUsers = await _repository.getAllUsers();
+    notifyListeners();
+  }
+
+  // Clear active user and navigate to user selection
+  Future<void> clearActiveUser() async {
+    await _repository.clearActiveUser();
+    activeUser = null;
+    notifyListeners();
+  }
+
   Future<void> addUser(String name) async {
     await _repository.createUser(name);
     await init();
   }
 
   Future<void> updateUserName(String newName) async {
-    if (activeUser == null) return;
+    if (activeUser == null) {
+      throw Exception('No active user');
+    }
     await _repository.updateUserName(activeUser!.username, newName);
-    await init();
+    await init(); // Refresh the data
   }
 
   Future<void> updateProfilePicture(String path) async {
-    if (activeUser == null) return;
+    if (activeUser == null) {
+      throw Exception('No active user');
+    }
     await _repository.updateProfilePicture(activeUser!.username, path);
-    await init();
+    await init(); // Refresh the data
   }
 
   Future<void> setPassword(String password) async {
@@ -45,8 +62,17 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> setActiveUser(String username) async {
+    // Save active username in SharedPreferences
     await _repository.setActiveUser(username);
-    await init();
+
+    // Fetch the actual UserEntity from Hive
+    final user = await _repository.getUserByUsername(username);
+    if (user == null) {
+      throw Exception("Failed to find the user after setting active");
+    }
+
+    activeUser = user;
+    notifyListeners();
   }
 
   Future<bool> verifyPassword(String password) async {

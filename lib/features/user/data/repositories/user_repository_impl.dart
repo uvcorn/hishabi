@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import '../../domain/entities/user_entity.dart';
@@ -25,18 +27,17 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> updateUserName(String oldUsername, String newName) async {
-    final user = await localDataSource.getUser(oldUsername);
-    if (user == null) return;
-    final base = _generateUsername(newName);
-    final allUsers = await localDataSource.getAllUsers();
-    final unique = _makeUniqueUsername(allUsers, base);
-    user.name = newName;
-    user.username = unique;
-    await localDataSource.updateUser(user);
+  Future<void> clearActiveUser() async {
+    await prefsDataSource.clearActiveUser();
+  }
 
-    final active = await prefsDataSource.getActiveUser();
-    if (active == oldUsername) await prefsDataSource.setActiveUser(unique);
+  @override
+  Future<void> updateUserName(String username, String newName) async {
+    final user = await localDataSource.getUser(username);
+    if (user == null) return;
+    user.name = newName; // Only update the display name
+    await localDataSource.updateUser(user);
+    // No need to update SharedPreferences
   }
 
   @override
@@ -81,6 +82,12 @@ class UserRepositoryImpl implements UserRepository {
   Future<List<UserEntity>> getAllUsers() async {
     final users = await localDataSource.getAllUsers();
     return users.map((u) => u.toEntity()).toList();
+  }
+
+  @override
+  Future<UserEntity?> getUserByUsername(String username) async {
+    final userModel = await localDataSource.getUser(username);
+    return userModel?.toEntity();
   }
 
   @override
